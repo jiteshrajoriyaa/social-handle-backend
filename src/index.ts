@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 app.post("/api/upload", upload.array("images"), async (req, res) => {
     const { name, handle } = req.body;
-    const imageUrls = (req.files as Express.Multer.File[]).map((file) => `http://localhost:4000/uploads/${file.filename}`);
+    const imageUrls = (req.files as Express.Multer.File[]).map((file) => `https://social-handle-backend.onrender.com/uploads/${file.filename}`);
 
     const user = await prisma.user.create({
         data: { name, handle, images: imageUrls },
